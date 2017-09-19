@@ -1,0 +1,6 @@
+{
+  "name": "ManagePhotos",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ManagePhotos.js"
+}
