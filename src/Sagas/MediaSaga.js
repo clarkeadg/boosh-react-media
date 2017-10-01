@@ -55,29 +55,27 @@ export default (api) => {
 
   function * attemptUploadImage (meta) {
 
+    let query = {
+      user_id: meta.user_id,
+      files: meta.files
+    }
+
     // make the call to the api
-    const response = yield call(api.uploadImage, meta)
+    const response = yield call(api.uploadImage, query)
 
     console.log('GOT MEDIA',response.data)
 
     // success?
     if (response && response.ok) {
 
-      //let count = response.data.meta.pagination.total;
-      //let data = response.data.data;
-
-      //let payload = normalize(data, arrayOf(MediaSchema));
-      //if (!payload.result.length) {
-      //  payload.entities.media = {};
-      //}
-
-      //console.log('NORMALIZED DATA', payload)
-      //yield put(PaginationActions.gotPaginationCount({ count: count }))
-      //yield put(UsersActions.getUsersSuccess(payload))
-      //yield put(Actions.getMediaSuccess(payload))
-
-      yield put(UsersActions.getUsersAttempt({ id: meta.user_id }));
-
+      if (meta.setMain) {
+        yield put(UsersActions.updateUsersAttempt({
+          id: meta.user_id,
+          photo: response.data.url
+        }))
+      } else {
+        yield put(UsersActions.getUsersAttempt({ id: meta.user_id }));
+      }
 
       //if (response.data.length) yield put(Actions.getMediaSuccess(object_group, object_id, response.data))
     } else {
