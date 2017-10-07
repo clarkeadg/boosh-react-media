@@ -14,10 +14,10 @@ import { Portlet, Gallery } from 'boosh-react-components'
 class ManagePhotos extends React.Component {
 
   render() {
-    let { me, user } = this.props
+    let { me, user, imgServer } = this.props
     if (!me.id || !user.id) return false;
 
-    let imageServer = 'http://local.uploads.boosh.io'
+    let imageServer = imgServer || 'http://local.uploads.boosh.io'
 
     let url = "";
     let images = [];
