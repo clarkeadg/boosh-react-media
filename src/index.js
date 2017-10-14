@@ -13,7 +13,7 @@ module.exports = {
   ManagePhotos:        ManagePhotos.default,
   MediaActions:        MediaActions.default,
   MediaSaga:           MediaSaga.default,
-  getMediaById:        MediaSelector.default,
+  getMediaById:        MediaSelector.getMediaById,
   MediaApi:            MediaApi.default,
   MediaReducer:        MediaReducer.default,
   MediaRoutes:         MediaRoutes.default
